@@ -1,0 +1,6 @@
+﻿################################################################################
+# 這個 .gitignore 檔案由 Microsoft(R) Visual Studio 自動建立。
+################################################################################
+
+/CoreAPI_Test/obj/Debug/net8.0/CoreAPI_Test.AssemblyInfo.cs
+/CoreAPI_Test/obj/Debug/net8.0/CoreAPI_Test.AssemblyInfoInputs.cache
