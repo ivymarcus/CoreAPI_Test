@@ -35,5 +35,37 @@ namespace CoreAPI_Test.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult<ApiResponseModel> CreateProduct([FromBody]ProductModel newProduct)
+        {
+            if (newProduct == null)
+            {
+                return BadRequest("產品資料不能為空");
+            }
+            int newId = productModels.Count()+1;
+            newProduct.ID = newId;
+            productModels.Add(newProduct);
+
+            ApiResponseModel apiResponseModel = new ApiResponseModel() { Status = 1, Message = "建立成功" };
+            return apiResponseModel;
+
+            /*
+            ProductModel? tempProduct = productModels.Where(x => x.ProductName == newProduct.ProductName).FirstOrDefault();
+            if (tempProduct == null)
+            {
+                return BadRequest("查無此商品");
+            }
+
+            int index = productModels.FindIndex(x => x.ProductName == newProduct.ProductName);
+            if(index != -1)
+            {
+                productModels[index].Category = newProduct.Category;
+                productModels[index].Price = newProduct.Price;
+            }
+
+            return productModels[index];
+            */
+        }
+
     }
 }
