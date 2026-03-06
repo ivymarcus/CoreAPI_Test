@@ -67,5 +67,53 @@ namespace CoreAPI_Test.Controllers
             */
         }
 
+        [HttpPut("update")]
+        public ActionResult<ProductModel> UpdateProduct([FromBody]ProductModel updateProduct)
+        {
+            if (updateProduct.ProductName == null)
+            {
+                return BadRequest("產品資料不能為空");
+            }
+
+            ProductModel? tempProduct = productModels.Where(x => x.ProductName == updateProduct.ProductName).FirstOrDefault();
+            if (tempProduct == null)
+            {
+                return BadRequest("查無此商品");
+            }
+
+            int index = productModels.FindIndex(x => x.ProductName == updateProduct.ProductName);
+            if (index != -1)
+            {
+                productModels[index].Category = updateProduct.Category;
+                productModels[index].Price = updateProduct.Price;
+            }
+
+            return productModels[index];
+
+        }
+
+
+        // [HttpDelete("Delete")]                   // api/Product/Delete?productName="xxx"
+        [HttpDelete("Delete/{productName}")]        // api/Product/Delete/xxx
+        public ActionResult<IEnumerable<ProductModel>> DeleteProduct(string productName)
+        {
+            if (String.IsNullOrEmpty(productName))
+            {
+                return BadRequest("產品資料不能為空");
+            }
+
+            int index = productModels.FindIndex(x => x.ProductName == productName);
+            if (index == -1)
+            {
+                return BadRequest("查無此商品");
+            }
+            else
+            {
+                productModels.Remove(productModels[index]);
+            }
+            return productModels;
+        }
+
+
     }
 }
