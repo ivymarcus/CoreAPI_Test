@@ -64,7 +64,7 @@ namespace CoreAPI_Test.Repostiroy
             dbConnection.Open();
             string sql = @"delete from Product
                            where ProductID = @ProductID";
-            return await dbConnection.ExecuteAsync(sql, id);
+            return await dbConnection.ExecuteAsync(sql, new { ProductID = id});
         }
 
 
