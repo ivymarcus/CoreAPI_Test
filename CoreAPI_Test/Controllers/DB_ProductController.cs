@@ -16,6 +16,7 @@ namespace CoreAPI_Test.Controllers
             _dbResp = new DB_ProductRepository(conn);
         }
 
+        // api/[controller]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DB_ProductModel>>> GetAllProduct()
         {
@@ -23,6 +24,7 @@ namespace CoreAPI_Test.Controllers
             return Ok(model);
         }
 
+        // api/[controller]/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<DB_ProductModel>> GetProductBtId(int id)
         {
@@ -35,6 +37,7 @@ namespace CoreAPI_Test.Controllers
         }
 
 
+        // Post: api/[controller]/add
         [HttpPost("add")]
         public async Task<IActionResult> PostProduct(DB_ProductModel model)
         {
@@ -46,7 +49,7 @@ namespace CoreAPI_Test.Controllers
             return BadRequest();
         }
 
-        // PUT: api/[controller]/5
+        // PUT: api/[controller]/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, DB_ProductModel model)
         {
@@ -64,7 +67,7 @@ namespace CoreAPI_Test.Controllers
             return NotFound();
         }
 
-        // Delete: api/[controller]/5
+        // Delete: api/[controller]/D/{id}
         //[HttpDelete]                    // https://localhost:7074/api/DB_Product?id=80  (會有 ?後 帶參數)
         [HttpDelete("D/{id}")]            // https://localhost:7074/api/DB_Product/D/90   (直接 帶 id)
         public async Task<IActionResult> DeleteProduct(int id)
