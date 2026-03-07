@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\CoreAPI_Test.props" />
-</Project>
